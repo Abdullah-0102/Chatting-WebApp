@@ -72,6 +72,8 @@ export default function Register() {
         password,
       });
 
+      console.log("Response data:", data); // Log the response data
+
       if (data.status === false) {
         toast.error(data.msg, toastOptions);
       }
