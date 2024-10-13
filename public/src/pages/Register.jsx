@@ -63,6 +63,7 @@ export default function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log("Submitting:", values); // Add this line
     if (handleValidation()) {
       const { email, username, password } = values;
       const { data } = await axios.post(registerRoute, {
