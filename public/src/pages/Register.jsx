@@ -63,29 +63,35 @@ export default function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Submitting:", values); // Add this line
+    console.log("Submitting values:", values);
+    
     if (handleValidation()) {
       const { email, username, password } = values;
-      const { data } = await axios.post(registerRoute, {
-        username,
-        email,
-        password,
-      });
-
-      console.log("Response data:", data); // Log the response data
-
-      if (data.status === false) {
-        toast.error(data.msg, toastOptions);
-      }
-      if (data.status === true) {
-        localStorage.setItem(
-          process.env.REACT_APP_LOCALHOST_KEY,
-          JSON.stringify(data.user)
-        );
-        navigate("/");
+      try {
+        const { data } = await axios.post(registerRoute, {
+          username,
+          email,
+          password,
+        });
+  
+        console.log("Response from backend:", data);
+  
+        if (data.status === false) {
+          toast.error(data.msg, toastOptions);
+        } else if (data.status === true) {
+          localStorage.setItem(
+            process.env.REACT_APP_LOCALHOST_KEY,
+            JSON.stringify(data.user)
+          );
+          navigate("/");
+        }
+      } catch (error) {
+        console.error("Error during registration:", error);
+        toast.error("Something went wrong. Please try again.", toastOptions);
       }
     }
   };
+  
 
   return (
     <>
