@@ -63,8 +63,8 @@ export default function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Submitting values:", values);
     console.log("POST Request URL:", registerRoute); // Add this line to confirm the URL
+    console.log("Submitting values:", values);
     
     if (handleValidation()) {
       const { email, username, password } = values;
