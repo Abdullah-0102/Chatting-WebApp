@@ -64,10 +64,10 @@ export default function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("Submitting values:", values);
+    console.log("POST Request URL:", registerRoute); // Add this line to confirm the URL
     
     if (handleValidation()) {
       const { email, username, password } = values;
-      console.log("POST Request URL:", registerRoute); // Add this line to confirm the URL
       try {
         const { data } = await axios.post(registerRoute, {
           username,
