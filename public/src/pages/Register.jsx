@@ -67,6 +67,7 @@ export default function Register() {
     
     if (handleValidation()) {
       const { email, username, password } = values;
+      console.log("POST Request URL:", registerRoute); // Add this line to confirm the URL
       try {
         const { data } = await axios.post(registerRoute, {
           username,
