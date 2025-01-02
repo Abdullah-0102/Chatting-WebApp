@@ -36,7 +36,7 @@ const io = socket(server, {
   cors: {
     origin: [
       "http://localhost:3000",  // for local development
-      "http://18.158.66.111:3000" // AWS frontend URL
+      "http://43.204.204.228:3000" // AWS frontend URL
     ],
     credentials: true,
   },
