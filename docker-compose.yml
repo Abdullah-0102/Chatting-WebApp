@@ -1,10 +1,36 @@
 version: '3.8'
 services:
   front:
-    build: ./public
+    build:
+      context: ./public
     ports:
-      - 3000:3000
+      - "3000:80"
+    container_name: chat-app-frontend
+    restart: always
+    depends_on:
+      - api
+
   api:
-    build: ./server
+    build:
+      context: ./server
     ports:
-      - 5000:5000
+      - "5000:5000"
+    container_name: chat-app-backend
+    restart: always
+    environment:
+      - MONGO_URI=mongodb+srv://abi220419:Abdullah1234%@chatwebsite.0yhum.mongodb.net/chat?retryWrites=true&w=majority&appName=ChatWebsite
+    depends_on:
+      - db
+
+  db:
+    image: mongo:latest
+    container_name: chat-app-db
+    ports:
+      - "27017:27017"
+    volumes:
+      - db-data:/data/db
+    restart: always
+
+volumes:
+  db-data:
+
